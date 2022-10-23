@@ -19,6 +19,7 @@ def format_json(data):
     return json.dumps(load_json(data), indent=4)
 
 def get_items_of_search(data):
+    list_result_with_format = dict()
     json_obj = load_json(data)
     for item in json_obj["result"]["items"]:
         description = ""
@@ -27,7 +28,8 @@ def get_items_of_search(data):
             if (description_obj["_lang"] == "es"):
                 description = description_obj["_value"]
                 break
-        print("-", description.split(".")[0]+"...")
+        description = description.split(".")[0]
+        list_result_with_format[description] = []
         for distribution_item in item['distribution']:
             if (distribution_item["format"]["value"] == "text/csv"):
                 title = ""
@@ -35,11 +37,16 @@ def get_items_of_search(data):
                 for title_obj in distribution_item['title']:
                     if (title_obj["_lang"] == "es"):
                         title = title_obj["_value"]
-                        print("\t-" + title + " -> " + url)
-        
+                        distributon_item_obj = dict()
+                        distributon_item_obj["title"] = title
+                        distributon_item_obj["url"] = url
+                        list_result_with_format[description].append(distributon_item_obj)
+    return list_result_with_format    
 
 req = search_datasets_by_keyword("telefonia")
-get_items_of_search(req)
+result = get_items_of_search(req)
+
+print(json.dumps(result, indent=4))
 
 # Example requests
 # print (format_json(req))
