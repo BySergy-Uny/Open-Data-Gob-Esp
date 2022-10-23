@@ -41,12 +41,4 @@ def get_items_of_search(data):
                         distributon_item_obj["title"] = title
                         distributon_item_obj["url"] = url
                         list_result_with_format[description].append(distributon_item_obj)
-    return list_result_with_format    
-
-req = search_datasets_by_keyword("telefonia")
-result = get_items_of_search(req)
-
-print(json.dumps(result, indent=4))
-
-# Example requests
-# print (format_json(req))
+    return list_result_with_format
