@@ -2,3 +2,7 @@
 .idea
 .env*
 Makefile
+
+
+# python cache
+*.pyc
