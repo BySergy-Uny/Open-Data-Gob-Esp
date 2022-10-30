@@ -53,4 +53,5 @@ print("dataset selected ----> ", dataset_selected)
 info_dt_sel = datasets[dataset_selected][0]
 print("data ---> ", info_dt_sel)
 print('url ---> ', info_dt_sel['url'])
-print("data response ---> ", get_data_from_url(info_dt_sel['url']))
+data = get_data_from_url(info_dt_sel['url'])
+#print("data response ---> ", data)
