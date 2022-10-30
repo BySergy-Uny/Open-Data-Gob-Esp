@@ -1,10 +1,8 @@
-from urllib.parse import urlencode
 import requests
 import json
 
 
-def get_request(options):
-    url = 'https://datos.gob.es/apidata/catalog/dataset'
+def get_request(options = "", url = 'https://datos.gob.es/apidata/catalog/dataset'):
     headers = {'Accept': 'application/json'}
     return requests.get(url + options, headers=headers).content
 
@@ -42,3 +40,7 @@ def get_items_of_search(data):
                         distributon_item_obj["url"] = url
                         list_result_with_format[description].append(distributon_item_obj)
     return list_result_with_format
+
+def get_data_from_url(url):
+    response = get_request(url = url)
+    return response
