@@ -44,14 +44,3 @@ def get_items_of_search(data):
 def get_data_from_url(url):
     response = get_request(url = url)
     return response
-
-datasets = get_items_of_search(search_datasets_by_keyword("telefonia"))
-titles_datasets = list(datasets.keys())
-print("titles dataset ----> ", titles_datasets)
-dataset_selected = titles_datasets[0]
-print("dataset selected ----> ", dataset_selected)
-info_dt_sel = datasets[dataset_selected][0]
-print("data ---> ", info_dt_sel)
-print('url ---> ', info_dt_sel['url'])
-data = get_data_from_url(info_dt_sel['url'])
-#print("data response ---> ", data)
